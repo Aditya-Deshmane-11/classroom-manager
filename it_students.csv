@@ -1,0 +1,21 @@
+id,owner_name,class_name,student_name,phone_number,performance_star,strong_topics,weak_topics,topics_to_work_on,suggestions,DOB
+1,"Love, Chavez and Stephenson",SYIT,Stephen Flores,(010)791-0907,2,DBMS,ML,DSA,Excellent,2004-05-09
+2,Anderson PLC,SYIT,Kimberly Todd,814-035-4957x16544,5,Web Dev,OS,DevOps,Average,2007-08-15
+3,Baker Group,FYIT,William Adams,114-408-9810,4,Java,ML,AI,Average,2002-09-14
+4,West PLC,TYIT,Jonathan Williams,9371250154,1,DBMS,OS,DevOps,Keep it up,2005-01-23
+5,"Jordan, Banks and Vasquez",TYIT,Tiffany Ward,(677)608-9428,1,Java,AI,Cloud,Excellent,2006-10-11
+6,Allen LLC,FYIT,Dr. Kathleen Whitaker,(231)188-1837x15007,3,Java,ML,AI,Needs improvement,2006-12-24
+7,"Reese, Sutton and Stephens",TYIT,Christine Rogers,533.362.8571x9587,3,Python,AI,SQL,Keep it up,2006-11-05
+8,Harrington-Collins,TYIT,Caroline Wells,+1-061-667-3690x192,2,Java,DSA,AI,Average,2002-10-15
+9,Miller PLC,FYIT,Charles Miller,823.121.7063,3,Web Dev,Maths,Cloud,Excellent,2002-07-16
+10,"Oconnor, Robinson and Mcconnell",TYIT,Steven Martin,+1-709-313-4402,5,Networking,ML,SQL,Needs improvement,2004-08-29
+11,Mcgee and Sons,FYIT,Ashley Gardner,001-981-253-0134x699,3,Python,Maths,DSA,Excellent,2002-12-21
+12,Dorsey-Hill,SYIT,Shelby Santiago,+1-292-873-8284x71180,1,Networking,ML,SQL,Focus on weak areas,2002-03-14
+13,Brewer and Sons,SYIT,Kimberly Owen,(558)831-7230x531,4,Python,Maths,AI,Focus on weak areas,2004-02-06
+14,Martin LLC,TYIT,Eric Butler,(512)785-7094x0488,3,DBMS,OS,SQL,Average,2002-04-16
+15,Johnston and Sons,FYIT,Nancy Baker,(844)738-2673,3,Networking,OS,Cloud,Average,2002-02-14
+16,Goodman-Valdez,TYIT,Rhonda Baldwin,6568908553,3,DBMS,Maths,AI,Focus on weak areas,2005-04-27
+17,Lopez-Smith,FYIT,Gary Hill,(049)185-6432,1,DBMS,OS,Cloud,Keep it up,2007-04-25
+18,Jones and Sons,SYIT,Jordan Russell,632-578-2237x964,2,Web Dev,ML,SQL,Excellent,2003-10-12
+19,Mendez-Edwards,TYIT,Annette York,001-634-214-1017,1,DBMS,AI,SQL,Needs improvement,2006-04-27
+20,Gonzalez-Brooks,FYIT,Peggy Wiggins,188-762-2882,2,Web Dev,Maths,AI,Average,2002-06-15

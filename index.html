@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewAI - We Call You. You Get Hired.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* NEW: Brutalist Color Scheme & Fonts */
+        body {
+            font-family: 'Manrope', -apple-system, sans-serif;
+            background: #f5f5f0; /* Off-white/Cream */
+            color: #0a0a0a; /* Black */
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* NEW: Aesthetic Grid Background (Subtle) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(10, 10, 10, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(10, 10, 10, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(245, 245, 240, 0.8); /* Cream-glass */
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 2px solid #0a0a0a; /* Brutalist border */
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: #0a0a0a;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #0a0a0a;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea; /* Purple accent on hover */
+        }
+
+        /* NEW: Brutalist CTA Button */
+        .cta-button {
+            padding: 0.7rem 1.8rem;
+            background: #0a0a0a;
+            border: 2px solid #0a0a0a;
+            border-radius: 30px; /* Pill shape */
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            text-decoration: none;
+            font-family: 'Manrope', sans-serif;
+            box-shadow: 4px 4px 0px #98ff98; /* Neon green shadow */
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px #98ff98;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #0a0a0a; /* Black bars */
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section - Full Height */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* --- NEW: Fixed Badge Layout --- */
+        .hero-badges-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* NEW: 1k+ Students Badge */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #fff;
+            border: 2px solid #0a0a0a;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-shadow: 4px 4px 0px #0a0a0a;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -2px;
+        }
+
+        /* NEW: Brutalist Highlight */
+        .hero h1 .highlight {
+            background-color: #98ff98; /* Neon Green */
+            color: #0a0a0a;
+            padding: 0 0.5rem;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            background-clip: initial;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .primary-btn {
+            padding: 1.2rem 3rem;
+            background: #0a0a0a;
+            border: 2px solid #0a0a0a;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            box-shadow: 5px 5px 0px #98ff98;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 7px 7px 0px #98ff98;
+        }
+
+        .secondary-btn {
+            padding: 1.2rem 3rem;
+            background: #f5f5f0;
+            border: 2px solid #0a0a0a;
+            border-radius: 30px;
+            color: #0a0a0a;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 5px 5px 0px #0a0a0a;
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 7px 7px 0px #0a0a0a;
+        }
+
+        /* Stats Cards */
+        .stats-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            border: 2px solid #0a0a0a;
+            border-radius: 0; /* NEW: Square Shape */
+            min-width: 180px;
+            transition: all 0.3s;
+            box-shadow: 5px 5px 0px #0a0a0a;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0px #0a0a0a;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* NEW: Themed Circle Progress */
+        .circle-progress {
+            /* Now part of flex, no position:absolute */
+            animation: fadeIn 2s ease;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .circle-bg {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            /* Themed Conic Gradient */
+            background: conic-gradient(
+                #98ff98 0deg 324deg,  /* 324deg = 90% */
+                #0a0a0a 324deg 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .circle-inner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #f5f5f0; /* Match body */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: spin-reverse 3s linear infinite;
+        }
+        
+        @keyframes spin-reverse {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        .circle-percent {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .circle-text {
+            font-size: 0.75rem;
+            color: #333;
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        /* NEW: Themed Rating Badge */
+        .rating-badge {
+            /* Now part of flex, no position:absolute */
+            background: #fff;
+            border: 2px solid #0a0a0a;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeIn 2.2s ease;
+            box-shadow: 4px 4px 0px #0a0a0a;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .rating-stars {
+            font-size: 1.2rem;
+            color: #0a0a0a; /* Black stars */
+        }
+
+        .rating-info {
+            text-align: left;
+        }
+
+        .rating-score {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .rating-reviews {
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 5%;
+            background: #fff;
+            border-top: 2px solid #0a0a0a;
+            border-bottom: 2px solid #0a0a0a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header .highlight {
+             background-color: #98ff98;
+             padding: 0 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .grid-3-col {
+             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+        
+        @media (min-width: 1100px) {
+            .grid-3-col {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+        }
+
+
+        .feature-card {
+            background: #fff;
+            border: 2px solid #0a0a0a;
+            border-radius: 12px; /* Rounded square */
+            padding: 2.5rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 5px 0px #0a0a0a;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0px #0a0a0a;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: #0a0a0a; /* Black circle */
+            border-radius: 50%; /* Perfect Circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #f5f5f0; /* Cream icon */
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0a0a0a;
+        }
+
+        .feature-card p {
+            color: #333;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-proof h3 {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .company-logos {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            opacity: 0.4; /* More subtle */
+        }
+
+        .company-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        /* How It Works Section */
+        #how-it-works {
+            background: transparent; /* Makes it part of body */
+            border-top: none;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f5f5f0; /* Cream text */
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background: #98ff98; /* Neon Green BG */
+            position: relative;
+            z-index: 1;
+            border-top: 2px solid #0a0a0a;
+            border-bottom: 2px solid #0a0a0a;
+        }
+
+        .final-cta h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: #0a0a0a;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .final-cta .primary-btn {
+            font-size: 1.2rem; 
+            padding: 1.3rem 3.5rem;
+            box-shadow: 5px 5px 0px #0a0a0a;
+        }
+        
+        .final-cta .primary-btn:hover {
+            box-shadow: 7px 7px 0px #0a0a0a;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: transparent;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .stats-showcase {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .hero-badges-container {
+                flex-direction: column;
+            }
+
+            /* --- Mobile Menu --- */
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-container .cta-button {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(245, 245, 240, 0.98);
+                backdrop-filter: blur(20px);
+                border-left: 2px solid #0a0a0a;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                transition: right 0.4s ease-in-out;
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+                color: #0a0a0a;
+            }
+            
+            .nav-links .mobile-cta {
+                display: inline-block;
+                font-size: 1.2rem;
+            }
+
+            .menu-toggle.active .bar:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            .menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active .bar:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .final-cta h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">InterviewAI</div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#features">The Problem</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#benefits">Who Benefits</a></li>
+                <li><a href="login.html" class="cta-button mobile-cta" style="display: none;">Get Started</a></li>
+            </ul>
+            <a href="login.html" class="cta-button">Get Started</a>
+            <div class="menu-toggle" id="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            
+            <div class="hero-badges-container">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-users"></i>
+                    <span>1k+ students enrolled</span>
+                </div>
+                <div class="circle-progress">
+                    <div class="circle-container">
+                        <div class="circle-bg">
+                            <div class="circle-inner">
+                                <div class="circle-percent">90%</div>
+                                <div class="circle-text">SUCCESS</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rating-badge">
+                    <div class="rating-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <div class="rating-info">
+                        <div class="rating-score">4.9</div>
+                        <div class="rating-reviews">100+ Reviews</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h1>
+                We don't wait for students to practice<br>
+                <span class="highlight">We call them.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                An AI-powered interview coach that calls students weekly with surprise mock interviews, delivers detailed performance reports, and keeps them motivated to succeed.
+            </p>
+
+            <div class="hero-cta">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeWNgZHr8-nmRFjKZcQOOTjt6I1znS9DqjKiKRWRWhp9uIkjA/viewform?usp=dialog" class="primary-btn">
+                    Schedule Demo
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#features" class="secondary-btn">Learn More</a>
+            </div>
+
+            <div class="stats-showcase">
+                <div class="stat-card">
+                    <div class="stat-number">80%+</div>
+                    <div class="stat-label">Higher Completion</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Consistent Practice</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <h3>TRUSTED BY LEADING INSTITUTIONS & EDTECH PLATFORMS</h3>
+        <div class="company-logos">
+            <div class="company-logo">TECH CORP</div>
+            <div class="company-logo">EDU LABS</div>
+            <div class="company-logo">FUTURE AI</div>
+            <div class="company-logo">SKILL UP</div>
+            <div class="company-logo">CAREER PRO</div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>The Problem & The <span class="highlight">Solution</span></h2>
+                <p>We solve the core issues that stop students from succeeding.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h3>Automated AI Calls</h3>
+                    <p>We call you directly every week. No opt-in required – ensuring consistent practice and accountability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3>Detailed Reports</h3>
+                    <p>Get comprehensive performance analysis covering answer correctness, communication clarity, and confidence levels.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <h3>Personalized Questions</h3>
+                    <p>Industry-relevant questions tailored to your specific course or career path, powered by adaptive machine learning.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3>"Reality Check" Effect</h3>
+                    <p>A natural motivation trigger that pushes students to study after realizing gaps in their knowledge during an interview.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>Zero Judgment Zone</h3>
+                    <p>Practice without fear or hesitation. Our AI interviewer provides objective feedback without any human bias.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3>Instant Feedback</h3>
+                    <p>Receive immediate, actionable insights after each interview to accelerate your learning and improvement journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>How It <span class="highlight">Works</span></h2>
+                <p>Four simple steps to interview mastery</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon step-number">1</div>
+                    <h3>Sign Up & Setup</h3>
+                    <p>Create your profile and select your course or career path. Set your availability preferences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon step-number">2</div>
+                    <h3>Receive AI Calls</h3>
+                    <p>Get surprise calls from our AI interviewer once or twice a week at scheduled times.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon step-number">3</div>
+                    <h3>Complete Interview</h3>
+                    <p>Answer industry-relevant questions in a natural conversation with our human-like AI.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon step-number">4</div>
+                    <h3>Review & Improve</h3>
+                    <p>Access your detailed performance report and track your progress over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features-section" id="benefits" style="background: #fff;">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Who <span class->Benefits?</span></h2>
+                <p>A solution for the entire learning & hiring ecosystem</p>
+            </div>
+            <div class="features-grid grid-3-col">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h3>For Students</h3>
+                    <p>Regular motivation, no fear of judgment, improved confidence through consistent practice, and better performance in real interviews.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+                    <h3>For Institutes & EdTech</h3>
+                    <p>Increased course completion rates, enhanced student satisfaction, and automated performance tracking to prove value.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h3>For Companies</h3>
+                    <p>Efficiently shortlist top candidates from large pools, reduce HR costs, and eliminate human bias in initial screening rounds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="cta">
+        <div class="section-container">
+            <h2>Ready to Transform Your Interview Preparation?</h2>
+            <p>Join the students, institutes, and companies building confidence and landing dream jobs with InterviewAI.</p>
+            <a href="login.html" class="primary-btn">
+                Start Your Journey Today
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="section-container">
+            <p>&copy; 2025 InterviewAI. All rights reserved. Building the future of interview preparation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- Optimized Intersection Observer for fade-in animations ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Animate all cards, badges, and stats
+        document.querySelectorAll('.feature-card, .stat-card, .hero-badge, .stats-showcase, .circle-progress, .rating-badge').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+        
+        // Staggered animation for hero text
+        const heroObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const heroH1 = document.querySelector('.hero h1');
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const heroCta = document.querySelector('.hero-cta');
+
+        if (heroH1) {
+            heroH1.style.opacity = '0';
+            heroH1.style.transform = 'translateY(30px)';
+            heroH1.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            heroObserver.observe(heroH1);
+        }
+        if (heroSubtitle) {
+            heroSubtitle.style.opacity = '0';
+            heroSubtitle.style.transform = 'translateY(30px)';
+            heroSubtitle.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s'; // 0.2s delay
+            heroObserver.observe(heroSubtitle);
+        }
+        if (heroCta) {
+            heroCta.style.opacity = '0';
+            heroCta.style.transform = 'translateY(30px)';
+            heroCta.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s'; // 0.4s delay
+            heroObserver.observe(heroCta);
+        }
+
+    </script>
+</body>
+</html>
